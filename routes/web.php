@@ -11,6 +11,20 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('welcome', function () {
     return view('welcome');
 });
+
+Route::get('/', 'BLogController@index');
+
+Route::get('novo', 'BlogController@add');
+
+Route::get('excluir/{id}', 'BlogController@delete');
+
+Route::post('salvar', 'BlogController@save', array('before' => 'csrf', function () {
+    //
+}));
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
